@@ -32,8 +32,10 @@ class Projectile {
         context.beginPath()
         context.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false)
         context.fillStyle = this.color
-        context.fill()
-        
+        context.fill()  
+    }
+    update() {
+        this.x
     }
 }
 
@@ -43,9 +45,24 @@ const y = canvas.height / 2
 const player = new Player (x , y, 30, 'blue')
 player.draw()
 
+const projectile = new Projectile(
+    canvas.width / 2,
+    canvas.height / 2, 
+    5, 
+    'red', 
+   {
+      x: 1,
+      y: 1,
+   })
+
+function animate () {
+    requestAnimationFrame(animate)
+    projectile.draw()
+    projectile.update()
+}
+
 window.addEventListener('click', (event) => {
-    const projectile = new Projectile(
-      event.clientX, event.clientY, 5, 'red', null)
-projectile.draw()
+    
 })
 
+animate()
